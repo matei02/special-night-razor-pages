@@ -1,0 +1,303 @@
+﻿@page
+@using DataAccessLayer
+@using DomainsLayer
+@using LogicLayer
+@model Website.Pages.DetailsModel
+@{
+}
+<div class="text-center">
+	<div class="row">
+		@if (Model.dress != null)
+		{
+			<div class="container-fluid align-self-center">
+				<div class="row g-0 d-flex justify-content-center align-items-center">
+					<div class="col-6 col-sm-4">
+						@if (Model.dress.GetColor() == DressColors.RED)
+						{
+							<img src="~/Pictures/red dress.jpg" class="detailpage-img" alt="Red Dress">
+						}
+						else if (Model.dress.GetColor() == DressColors.BLUE)
+						{
+							<img src="~/Pictures/blue dress.jpg" class="detailpage-img" alt="Blue Dress">
+						}
+						else
+						{
+							<img src="~/Pictures/black dress.jpg" class="detailpage-img" alt="Black Dress">
+						}
+					</div>
+					<div class="col-6 col-sm-8 p-3">
+						<div class="card-body card-body-custom">
+							<h2 class="text-capitalize">@Model.dress.GetName()</h2>
+							<div claclass="card-info">
+								<p class="card-text">Size Bust: @Model.dress.GetSizeB()'</p>
+								<p class="card-text">Size Waist: @Model.dress.GetSizeW()'</p>
+								<p class="card-text">Size Hips: @Model.dress.GetSizeH()'</p>
+								<p class="card-text">Price: €@Model.dress.GetPrice()</p>
+								<p class="card-text">Available quantity: @Model.dress.Quantity</p>
+								@if (HttpContext.Session.GetString("Name") != null)
+								{
+									if (!Model.DoesCustomerHaveRental)
+									{
+										if (Model.EqualCartAndStock(Model.dress.GetID()))
+										{
+											<p><strong>There are no more pieces in stock.</strong></p>
+										}
+										else
+										{
+											<form method="post">
+												<button asp-page-handler="AddToCart" class="btn-dark">Add to cart</button>
+												<input asp-for="ProductID" type="hidden" value="@Model.dress.GetID()" />
+											</form>
+											<p>@Model.Message</p>
+										}
+									}
+									else
+									{
+										<p><strong>You currently have a rental in progress.</strong></p>
+									}
+								}
+								else
+								{
+									<form method="post">
+										<p><strong>Authenticate first to be able to add to cart.</strong></p>
+										<button asp-page-handler="GoToLogin" class="btn-primary" type="submit">Login</button>
+									</form>
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+		else if (Model.suit != null)
+		{
+			<div class="container-fluid align-self-center">
+				<div class="row g-0 d-flex justify-content-center align-items-center">
+					<div class="col-6 col-sm-4">
+						@if (Model.suit.GetColor() == SuitColors.BLACK)
+						{
+							<img src="~/Pictures/black suit.jpg" class="detailpage-img" alt="Black Suit">
+						}
+						else if (Model.suit.GetColor() == SuitColors.NAVY)
+						{
+							<img src="~/Pictures/navy suit.jpeg" class="detailpage-img" alt="Navy Suit">
+						}
+						else
+						{
+							<img src="~/Pictures/brown suit.jpg" class="detailpage-img" alt="Brown Suit">
+						}
+					</div>
+					<div class="col-6 col-sm-8 p-3">
+						<div class="card-body card-body-custom">
+							<h2 class="text-capitalize">@Model.suit.GetName()</h2>
+							<div claclass="card-info">
+								<p class="card-text">Size Bust: @Model.suit.GetSizeB()'</p>
+								<p class="card-text">Size Waist: @Model.suit.GetSizeW()'</p>
+								<p class="card-text">Size Hips: @Model.suit.GetSizeH()'</p>
+								<p class="card-text">Price: €@Model.suit.GetPrice()</p>
+								<p class="card-text">Available quantity: @Model.suit.Quantity</p>
+								@if (HttpContext.Session.GetString("Name") != null)
+								{
+									if (!Model.DoesCustomerHaveRental)
+									{
+										if (Model.EqualCartAndStock(Model.suit.GetID()))
+										{
+											<p><strong>There are no more pieces in stock.</strong></p>
+										}
+										else
+										{
+											<form method="post">
+												<button asp-page-handler="AddToCart" class="btn-dark">Add to cart</button>
+												<input asp-for="ProductID" type="hidden" value="@Model.suit.GetID()" />
+											</form>
+											<p>@Model.Message</p>
+										}
+									}
+									else
+									{
+										<p><strong>You currently have a rental in progress.</strong></p>
+									}
+								}
+								else
+								{
+									<form method="post">
+										<p><strong>Authenticate first to be able to add to cart.</strong></p>
+										<button asp-page-handler="GoToLogin" class="btn-primary" type="submit">Login</button>
+									</form>
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+		else if (Model.bracelet != null)
+		{
+			<div class="container-fluid align-self-center">
+				<div class="row g-0 d-flex justify-content-center align-items-center">
+					<div class="col-6 col-sm-4">
+						@if (Model.bracelet.GetMaterial() == Material.GOLD)
+						{
+							<img src="~/Pictures/gold bracelet.jpg" class="detailpage-img" alt="Gold Bracelet">
+						}
+						else
+						{
+							<img src="~/Pictures/silver bracelet.jpg" class="detailpage-img" alt="Silver Bracelet">
+						}
+					</div>
+					<div class="col-6 col-sm-8 p-3">
+						<div class="card-body card-body-custom">
+							<h2 class="text-capitalize">@Model.bracelet.GetName()</h2>
+							<div claclass="card-info">
+								<p class="card-text">Material: @Model.bracelet.GetMaterial()</p>
+								<p class="card-text">Price: €@Model.bracelet.GetPrice()</p>
+								<p class="card-text">Available quantity: @Model.bracelet.Quantity</p>
+								@if (HttpContext.Session.GetString("Name") != null)
+								{
+									if (!Model.DoesCustomerHaveRental)
+									{
+										if (Model.EqualCartAndStock(Model.bracelet.GetID()))
+										{
+											<p><strong>There are no more pieces in stock.</strong></p>
+										}
+										else
+										{
+											<form method="post">
+												<button asp-page-handler="AddToCart" class="btn-dark">Add to cart</button>
+												<input asp-for="ProductID" type="hidden" value="@Model.bracelet.GetID()" />
+											</form>
+											<p>@Model.Message</p>
+										}
+									}
+									else
+									{
+										<p><strong>You currently have a rental in progress.</strong></p>
+									}
+								}
+								else
+								{
+									<form method="post">
+										<p><strong>Authenticate first to be able to add to cart.</strong></p>
+										<button asp-page-handler="GoToLogin" class="btn-primary" type="submit">Login</button>
+									</form>
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+		else if (Model.necklace != null)
+		{
+			<div class="container-fluid align-self-center">
+				<div class="row g-0 d-flex justify-content-center align-items-center">
+					<div class="col-6 col-sm-4">
+						@if (Model.necklace.GetMaterial() == Material.GOLD)
+						{
+							<img src="~/Pictures/gold necklace.jpg" class="detailpage-img" alt="Gold necklace">
+						}
+						else
+						{
+							<img src="~/Pictures/silver necklace.jpg" class="detailpage-img" alt="Silver necklace">
+						}
+					</div>
+					<div class="col-6 col-sm-8 p-3">
+						<div class="card-body card-body-custom">
+							<h2 class="text-capitalize">@Model.necklace.GetName()</h2>
+							<div claclass="card-info">
+								<p class="card-text">Material: @Model.necklace.GetMaterial()</p>
+								<p class="card-text">Price: €@Model.necklace.GetPrice()</p>
+								<p class="card-text">Available quantity: @Model.necklace.Quantity</p>
+								@if (HttpContext.Session.GetString("Name") != null)
+								{
+									if (!Model.DoesCustomerHaveRental)
+									{
+										if (Model.EqualCartAndStock(Model.necklace.GetID()))
+										{
+											<p><strong>There are no more pieces in stock.</strong></p>
+										}
+										else
+										{
+											<form method="post">
+												<button asp-page-handler="AddToCart" class="btn-dark">Add to cart</button>
+												<input asp-for="ProductID" type="hidden" value="@Model.necklace.GetID()" />
+											</form>
+											<p>@Model.Message</p>
+										}
+									}
+									else
+									{
+										<p><strong>You currently have a rental in progress.</strong></p>
+									}
+								}
+								else
+								{
+									<form method="post">
+										<p><strong>Authenticate first to be able to add to cart.</strong></p>
+										<button asp-page-handler="GoToLogin" class="btn-primary" type="submit">Login</button>
+									</form>
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+		else if (Model.earring != null)
+		{
+			<div class="container-fluid align-self-center">
+				<div class="row g-0 d-flex justify-content-center align-items-center">
+					<div class="col-6 col-sm-4">
+						@if (Model.earring.GetMaterial() == Material.GOLD)
+						{
+							<img src="~/Pictures/gold earrings.jpg" class="detailpage-img" alt="Gold earrings">
+						}
+						else
+						{
+							<img src="~/Pictures/silver earrings.jpg" class="detailpage-img" alt="Silver earrings">
+						}
+					</div>
+					<div class="col-6 col-sm-8 p-3">
+						<div class="card-body card-body-custom">
+							<h2 class="text-capitalize">@Model.earring.GetName()</h2>
+							<div claclass="card-info">
+								<p class="card-text">Material: @Model.earring.GetMaterial()</p>
+								<p class="card-text">Price: €@Model.earring.GetPrice()</p>
+								<p class="card-text">Available quantity: @Model.earring.Quantity</p>
+								@if (HttpContext.Session.GetString("Name") != null)
+								{
+									if (!Model.DoesCustomerHaveRental)
+									{
+										if (Model.EqualCartAndStock(Model.earring.GetID()))
+										{
+											<p><strong>There are no more pieces in stock.</strong></p>
+										}
+										else
+										{
+											<form method="post">
+												<button asp-page-handler="AddToCart" class="btn-dark">Add to cart</button>
+												<input asp-for="ProductID" type="hidden" value="@Model.earring.GetID()" />
+											</form>
+											<p>@Model.Message</p>
+										}
+									}
+									else
+									{
+										<p><strong>You currently have a rental in progress.</strong></p>
+									}
+								}
+								else
+								{
+									<form method="post">
+										<p><strong>Authenticate first to be able to add to cart.</strong></p>
+										<button asp-page-handler="GoToLogin" class="btn-primary" type="submit">Login</button>
+									</form>
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>

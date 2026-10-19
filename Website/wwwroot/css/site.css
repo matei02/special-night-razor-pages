@@ -1,0 +1,698 @@
+html {
+  font-size: 16px;
+/*  position: relative;*/
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+    /*margin-bottom: 60px;
+    background-color: rgba(206, 207, 202, 1) !important;
+    height: 100%;
+    */
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+    width: 100vw;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x:hidden;
+}
+
+footer{
+    position: unset !important;
+}
+
+header, footer {
+    flex: 0 1 auto;
+}
+
+.footer-color {
+    background-color: #343A40 !important;
+}
+
+.footer-text {
+    color: rgb(195, 195, 195) !important;
+}
+
+.navbar-custom {
+    background-color: #343A40 !important;
+    margin: 0 !important;
+}
+
+.navbar-textcolor {
+    color:white !important;
+}
+
+.navbar_account a {
+    color:white !important;
+}
+
+.navbar_account a:hover {
+    color: deepskyblue !important;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.middle-screen {
+    flex-grow: 1;
+}
+
+.bgcolor {
+    background-color: rgba(119, 141, 169, 1);
+}
+
+.main-content {
+    min-width: 100%;
+    min-height: 100%;
+}
+/*
+.sidebar-height {
+    min-height: 835px;
+}*/
+
+@media (min-width: 767px) {
+    .sidebar-height {
+        min-height: 835px;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar-height {
+        max-height: fit-content;
+    }
+}
+
+.sidebar_color {
+    background-color: #E9ECEF;
+}
+
+.sidebar_list li a {
+    color: rgba(13, 27, 42, 1);
+}
+
+.sidebar_list li a:hover {
+    color: rosybrown;
+}
+
+.container-navbar{
+    max-width:100vw !important;
+}
+
+.container1 {
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+.container1 .row1{
+    display: flex;
+    flex-grow: 1;
+}
+.row1 .col10{
+    flex-grow: 1;
+    padding: 1rem;
+}
+.row1 .col1 {
+    padding: 1rem;
+    background-color: rgba(119, 141, 169, 1);
+    min-width: fit-content;
+}
+
+.col1 li a {
+    color: white;
+}
+
+.col1 li a:hover {
+    color: black;
+}
+
+.index-pictures {
+    max-width: 25vh !important;
+    max-height: 25vh !important;
+}
+
+.logopic {
+    width: 300px;
+    height: 300px;
+}
+
+.picture-left {
+    left: 5vw;
+}
+
+.picture-middle {
+    justify-content: center;
+    align-content:center;
+    align-items:center;
+}
+
+.picture-right {
+    right: 2vw;
+}
+
+.user_icon {
+    height: 2vh;
+    width: 2vw;
+}
+
+.company-description {
+    font-size: 20px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.paragraph-tab {
+    text-indent: 40px
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin-right: 5vw;
+    background-color: rgba(13, 27, 42, 1) !important;
+}
+
+.search__input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #AAB7B7;
+    border: none;
+    color: black;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    width: 12em;
+    transition: all ease-in-out .1s;
+    margin-right: -2rem;
+}
+
+    .search__input:hover, .search__input:focus {
+        box-shadow: 0 0 1em #00000013;
+    }
+
+    .search__input:focus {
+        outline: none;
+        background-color: #f0eeee;
+    }
+
+    .search__input::-webkit-input-placeholder {
+        font-weight: 100;
+        color: #ccc;
+    }
+
+    .search__input:focus + .search__button {
+        background-color: #f0eeee;
+    }
+
+.search__button {
+    border: none;
+    background-color: #AAB7B7;
+    margin-top: .1em;
+
+    border-radius: 10px;
+    position: relative;
+    right: 3px;
+}
+
+    .search__button:hover {
+        cursor: pointer;
+    }
+
+.search__icon {
+    height: 3vh;
+    width: 1.3em;
+    fill: black;
+
+    right: 1vh;
+    position: relative;
+}
+
+input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+.reviewtext
+{
+     width: 50%;
+     height: 80%;
+}
+
+.contactDiv {
+    display: block;
+}
+
+.product{
+    width: 45%;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    column-gap: 20px;
+}
+
+.product-image {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.card-body-custom {
+    margin-left: 20px;
+}
+
+.card-body {
+    overflow-x: auto !important;
+}
+
+.card-custom {
+    -webkit-box-shadow: 10px 10px 19px -12px rgba(200,200,200,1);
+    -moz-box-shadow: 10px 10px 19px -12px rgba(200,200,200,1);
+    box-shadow: 10px 10px 19px -12px rgba(200,200,200,1);
+}
+
+.page-title {
+    margin: 45px 0;
+}
+
+.page-title-container {
+    text-align: center;
+    padding: 55px 20px;
+    background: #f6f6f6;
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+}
+
+ul {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.link {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.sidebar_list_container {
+    min-height: calc(100vh - 95px);
+}
+
+.auth_form {
+    padding: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+    .auth_form {
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .border-end {
+        border-color: transparent !important;
+    }
+}
+
+.card-info {
+    line-height: 1;
+    margin-top: 50px;
+}
+
+.contact-info {
+    line-height: 1;
+}
+
+.image-catalogue {
+    object-fit: contain;
+}
+
+.catalogue {
+    grid-template-columns:auto auto;
+}
+
+.card-img {
+    width: 100%;
+    height: 300px; /* or any desired height */
+    object-fit: contain;
+}
+
+.detailpage-img {
+    width: 100%;
+    height: 819px; /* or any desired height */
+    object-fit: contain;
+}
+
+.searchbar {
+    padding-left: 0 !important;
+}
+
+@import "compass/css3";
+
+/*
+I wanted to go with a mobile first approach, but it actually lead to more verbose CSS in this case, so I've gone web first. Can't always force things...
+
+Side note: I know that this style of nesting in SASS doesn't result in the most performance efficient CSS code... but on the OCD/organizational side, I like it. So for CodePen purposes, CSS selector performance be damned.
+*/
+
+/* Global settings */
+$color-border: #eee;
+$color-label: #aaa;
+$font-default: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
+/* Global "table" column settings */
+.product-image {
+    float: left;
+    width: 20%;
+}
+
+.product-details {
+    float: left;
+    width: 37%;
+}
+
+.product-price {
+    float: left;
+    width: 12%;
+}
+
+.product-quantity {
+    float: left;
+    width: 10%;
+}
+
+.product-removal {
+    float: left;
+    width: 9%;
+}
+
+.product-line-price {
+    float: left;
+    width: 12%;
+    text-align: right;
+}
+
+
+/* This is used as the traditional .clearfix class */
+.group:before,
+.group:after {
+    content: '';
+    display: table;
+}
+
+.group:after {
+    clear: both;
+}
+
+.group {
+    zoom: 1;
+}
+
+
+/* Apply clearfix in a few places */
+.shopping-cart, .column-labels, .product, .totals-item {
+    @extend .group;
+}
+
+
+    /* Apply dollar signs */
+    .product .product-price:before, .product .product-line-price:before, .totals-value:before {
+        content: '$';
+    }
+
+
+
+h1 {
+    font-weight: 100;
+}
+
+label {
+    color: $color-label;
+}
+
+.shopping-cart {
+    margin-top: -45px;
+}
+
+
+/* Column headers */
+.column-labels {
+    label
+
+{
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid $color-border;
+}
+
+.product-image, .product-details, .product-removal {
+    text-indent: -9999px;
+}
+
+}
+
+
+/* Product entries */
+.product {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color-border;
+    .product-image
+
+{
+    text-align: center;
+    img
+
+{
+    width: 100px;
+}
+
+}
+
+.product-details {
+    .product-title
+
+{
+    margin-right: 20px;
+    font-family: $font-bold;
+}
+
+.product-description {
+    margin: 5px 20px 5px 0;
+    line-height: 1.4em;
+}
+
+}
+
+.product-quantity {
+    input
+
+{
+    width: 40px;
+}
+
+}
+
+.remove-product {
+    border: 0;
+    padding: 4px 8px;
+    background-color: #c66;
+    color: #fff;
+    font-family: $font-bold;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+    .remove-product:hover {
+        background-color: #a44;
+    }
+
+}
+
+
+/* Totals section */
+.totals {
+    .totals-item
+
+{
+    float: right;
+    clear: both;
+    width: 100%;
+    margin-bottom: 10px;
+    label
+
+{
+    float: left;
+    clear: both;
+    width: 79%;
+    text-align: right;
+}
+
+.totals-value {
+    float: right;
+    width: 21%;
+    text-align: right;
+}
+
+}
+
+.totals-item-total {
+    font-family: $font-bold;
+}
+
+}
+
+.checkout {
+    float: right;
+    border: 0;
+    margin-top: 20px;
+    padding: 6px 25px;
+    background-color: #6b6;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 3px;
+}
+
+    .checkout:hover {
+        background-color: #494;
+    }
+
+/* Make adjustments for tablet */
+@media screen and (max-width: 650px) {
+
+    .shopping-cart {
+        margin: 0;
+        padding-top: 20px;
+        border-top: 1px solid $color-border;
+    }
+
+    .column-labels {
+        display: none;
+    }
+
+    .product-image {
+        float: right;
+        width: auto;
+        img
+
+{
+    margin: 0 0 10px 10px;
+}
+
+}
+
+.product-details {
+    float: none;
+    margin-bottom: 10px;
+    width: auto;
+}
+
+.product-price {
+    clear: both;
+    width: 70px;
+}
+
+.product-quantity {
+    width: 100px;
+    input
+
+{
+    margin-left: 20px;
+}
+
+}
+
+.product-quantity:before {
+    content: 'x';
+}
+
+.product-removal {
+    width: auto;
+}
+
+.product-line-price {
+    float: right;
+    width: 70px;
+}
+
+/*  FOR THE SHOPPING CART ON PHONES */
+/*.gradient-custom {*/
+    /* fallback for old browsers */
+    /*background: #6a11cb;*/
+    /* Chrome 10-25, Safari 5.1-6 */
+    /*background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));*/
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /*background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}*/
+
+.cart-quantity-button {
+    height: 38px !important;
+}
+
+.cart-pictures {
+    height: 250px !important;
+}
+
+.recommended-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
+.recommended-price {
+    color: grey;
+    font-size: 22px;
+}
+
+.recommended-card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.recommended-card button:hover {
+    opacity: 0.7;
+}
+
+.recommended-bg-color {
+    background-color: blue !important;
+}
+
+.recommended-box {
+    overflow-x: scroll;
+}
+
+.row-scrollable {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.recommended-product-box-size {
+    height: 100% !important;
+    display: inline-flex;
+}

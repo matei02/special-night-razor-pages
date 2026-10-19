@@ -1,0 +1,114 @@
+﻿@page
+@using DomainsLayer;
+@model Website.Pages.ProfileModel
+@{
+}
+
+<div class="container-fluid w-100 h-100 align-items-center">
+    <form method="post" novalidate>
+    <div class="col h-100">
+            <div class="container-fluid text-center text-decoration-underline fw-bold">
+            <h1>Edit account.</h1>
+        </div>
+        <br />
+        <br />
+
+        <div class="col-lg-12">
+            <div class="form-floating">
+                <input asp-for="Name" type="text" class="form-control" id="floatingInput" value=@Model.customer.Name placeholder="FirstName LastName">
+                <span class="text-danger" asp-validation-for="Name"></span>
+                <label for="floatingInput">Full Name</label>
+            </div>
+        </div>
+        <br />
+        <div class="col-lg-12">
+            <div class="form-floating">
+                    <input asp-for="Email" type="email" class="form-control" readonly value=@Model.customer.Email placeholder="name@example.com">
+                <span class="text-danger" asp-validation-for="Email"></span>
+                <label asp-for="Email">Email address</label>
+            </div>
+        </div>
+        <br />
+        <div class="col-lg-12">
+            <div class="form-floating">
+                    <input asp-for="Password" type="password" class="form-control" id="floatingPassword" value="" placeholder ="Password">
+                <span class="text-danger" asp-validation-for="Password"></span>
+                <label for="floatingPassword">Password</label>
+            </div>
+        </div>
+        <br />
+        <div class="col-lg-12">
+            <div class="form-floating">
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" id="floatingPassword" value="" placeholder="Repeat password">
+                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                <label for="floatingPassword">Confirm password</label>
+            </div>
+        </div>
+        <br />
+        <div class="col-lg-12">
+            <div class="form-floating">
+                    <input asp-for="Address" type="text" class="form-control" id="floatingInput" value=@Model.customer.Address placeholder="Address">
+                <span class="text-danger" asp-validation-for="Address"></span>
+                <label for="floatingInput">Address</label>
+            </div>
+        </div>
+        <br />
+        <div class="col-lg-12">
+            <div class="form-floating">
+                    <input asp-for="PhoneNumber" type="text" class="form-control" id="floatingInput" value=@Model.customer.PhoneNumber placeholder ="Phone Number">
+                <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                <label for="floatingInput">Phone number</label>
+            </div>
+        </div>
+
+        <br />
+            <div class="col-lg-12">
+                <div class="form-floating">
+                    <input asp-for="Age" type="number" class="form-control" id="floatingInput" value=@Model.customer.Age placeholder="Age">
+                    <span class="text-danger" asp-validation-for="Age"></span>
+                    <label for="floatingInput">Age</label>
+                </div>
+            </div>
+
+        <br />
+        @if (Model.customer.Gender.Equals(Gender.male))
+        {
+            <div class="col-lg-12">
+                <div class="form-floating">
+                    <select asp-for="Gender" class="form-select" id="genderSelect">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    <span class="text-danger" asp-validation-for="Gender"></span>
+                    <label for="genderSelect">Gender</label>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-lg-12">
+                <div class="form-floating">
+                    <select asp-for="Gender" class="form-select" id="genderSelect">
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                    </select>
+                    <span class="text-danger" asp-validation-for="Gender"></span>
+                    <label for="genderSelect">Gender</label>
+                </div>
+            </div>
+            }
+            <br />
+
+        <div class="container">
+            <div class="row">
+                    <div class="col">
+                        <button asp-page-handler="Edit" class="btn btn-secondary btn-lg float-start">Save</button>
+                    </div>
+                    <div class="col">
+                        <button asp-page-handler="Delete" onclick="return confirm('Are you sure you want to delete your account?');" class="btn btn-danger btn-lg float-end">Delete account</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>

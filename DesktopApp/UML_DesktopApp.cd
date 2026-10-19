@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DesktopApp.Form1">
+    <Position X="12" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AUFAogAgYmAAABAAAACABQACAMBYAAkAAHQPQQBAAgQ=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UC_Accounts" />
+      <Property Name="UC_Reviews" />
+      <Property Name="UC_Orders" />
+      <Property Name="UC_Products" />
+      <Property Name="Products" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DesktopApp.Login">
+    <Position X="8.75" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAAABAAIACgAAACIMAYAgAAAHAAAQBAAAA=</HashCode>
+      <FileName>Login.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Form1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DesktopApp.Products">
+    <Position X="14.5" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EERAAAAAACAJABABAACAhAAKAMEIIAA4AGIAAQABBAA=</HashCode>
+      <FileName>Products.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesktopApp.UC_Accounts">
+    <Position X="5.5" Y="7.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIQgAAABISAQCRIAIICIIBAKIAAQAgC4ACgAYEABABQ=</HashCode>
+      <FileName>UC_Accounts.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesktopApp.UC_Orders">
+    <Position X="8.5" Y="1" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABQAAAAIKIBABAACACAgAACAABAAAAAIAAEAQAEAgI=</HashCode>
+      <FileName>UC_Orders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesktopApp.UC_Products">
+    <Position X="8.75" Y="14.75" Width="2" />
+    <Members>
+      <Field Name="btnAddProduct" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAAAgAACABQAKAAAAAAAAAEAAABAAUAA=</HashCode>
+      <FileName>UC_Products.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesktopApp.UC_Reviews">
+    <Position X="11.75" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIiBAQhAAEACBAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UC_Reviews.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

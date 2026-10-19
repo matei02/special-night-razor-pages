@@ -1,0 +1,639 @@
+﻿@page
+@using DomainsLayer;
+@using DomainsLayer.Classes;
+@model Website.Pages.Shopping_CartModel
+@{
+	ViewData["Title"] = "Shopping cart";
+}
+<div class="p-3">
+    <div class="page-title-container">
+        <h1 class="display-4">Shopping Cart</h1>
+        <p class="lead"></p>
+    </div>
+
+@*
+    <div class="d-flex">
+        <label class="alert-danger align-self-center"><strong>@Model.Message</strong></label>
+    </div>*@
+    @if (HttpContext.Session.GetString("Name") != null)
+    {
+        <section class="h-100 ">
+            <div class="container py-5">
+                <div class="row d-flex justify-content-center my-4 w-100">
+                    <label class="alert-danger align-self-center"><strong>@Model.Message</strong></label>
+                    <div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h5 class="mb-0">@Model.ShoppingCartManager.GetAllShoppingCartProducts(HttpContext.Session.GetInt32("id")).Count Products in cart</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Single item -->
+                                @foreach (Product p in Model.ShoppingCartManager.GetAllShoppingCartProducts(HttpContext.Session.GetInt32("id")))
+                                {
+                                    if (p is Dress)
+                                    {
+                                        Dress dress = (Dress)p;
+                                        <div class="row mb-4">
+                                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                                <!-- Image -->
+                                                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                                    @if (dress.GetColor() == DressColors.RED)
+                                                    {
+                                                        <img src="~/Pictures/red dress.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Red Dress">
+                                                    }
+                                                    else if (dress.GetColor() == DressColors.BLUE)
+                                                    {
+                                                        <img src="~/Pictures/blue dress.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Red Dress">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Pictures/black dress.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Red Dress">
+                                                    }
+                                                </div>
+                                                <!-- Image -->
+                                            </div>
+
+                                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Data -->
+                                                <p><strong>@dress.GetName()</strong></p>
+                                                <p>Color: @dress.GetColor().ToString()</p>
+                                                <p>Size Bust: @dress.GetSizeB()</p>
+                                                <p>Size Waist: @dress.GetSizeW()</p>
+                                                <p>Size Hips: @dress.GetSizeH()</p>
+                                                <form method="post">
+                                                    <input asp-for="ProductID" type="hidden" value="@dress.GetID()">
+                                                    <button asp-page-handler="RemoveFromCart" asp-route-productID="@dress.GetID()" type="submit" class="btn-danger px-3 me-2 mx-lg-1 btn" style="height:38px;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <!-- Data -->
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Quantity -->
+                                                <div class="d-flex mb-4" style="max-width: 300px">
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@dress.GetID()">
+                                                        <button asp-page-handler="DecreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(dress.Quantity <= 1 ? "disabled" : null)">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+                                                    </form>
+
+                                                    <div class="form-outline">
+                                                        <input id="form1" min="1" name="quantity" value="@dress.Quantity" type="number" readonly class="form-control"
+                                                               oninput="if (this.value < 1) this.value = 1;" />
+                                                        <label class="form-label" for="form1">Quantity</label>
+                                                    </div>
+
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@dress.GetID()">
+                                                        <button asp-page-handler="IncreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(dress.Quantity == Model.productManager.GetDressesStock().Count ? "disabled" : null)">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+
+
+
+                                                <!-- Quantity -->
+                                                <!-- Price -->
+                                                <p class="text-start text-md-center">
+                                                    <strong>€@dress.GetPrice() per piece.</strong>
+                                                </p>
+                                                <!-- Price -->
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (p is Suit)
+                                    {
+                                        Suit suit = (Suit)p;
+                                        <div class="row mb-4">
+                                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                                <!-- Image -->
+                                                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                                    @if (suit.GetColor() == SuitColors.BLACK)
+                                                    {
+                                                        <img src="~/Pictures/black suit.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Black Suit">
+                                                    }
+                                                    else if (suit.GetColor() == SuitColors.NAVY)
+                                                    {
+                                                        <img src="~/Pictures/navy suit.jpeg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Navy Suit">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Pictures/brown suit.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Brown Suit">
+                                                    }
+                                                </div>
+                                                <!-- Image -->
+                                            </div>
+
+                                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Data -->
+                                                <p><strong>@suit.GetName()</strong></p>
+                                                <p>Color: @suit.GetColor().ToString()</p>
+                                                <p>Size Bust: @suit.GetSizeB()</p>
+                                                <p>Size Waist: @suit.GetSizeW()</p>
+                                                <p>Size Hips: @suit.GetSizeH()</p>
+                                                <form method="post">
+                                                    <input asp-for="ProductID" type="hidden" value="@suit.GetID()">
+                                                    <button asp-page-handler="RemoveFromCart" asp-route-productID="@suit.GetID()" type="submit" class="btn-danger px-3 me-2 mx-lg-1 btn" style="height:38px;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <!-- Data -->
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Quantity -->
+                                                <div class="d-flex mb-4" style="max-width: 300px">
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@suit.GetID()">
+                                                        <button asp-page-handler="DecreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(suit.Quantity <= 1 ? "disabled" : null)">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+                                                    </form>
+
+                                                    <div class="form-outline">
+                                                        <input id="form1" min="1" name="quantity" value="@suit.Quantity" type="number" readonly class="form-control"
+                                                               oninput="if (this.value < 1) this.value = 1;" />
+                                                        <label class="form-label" for="form1">Quantity</label>
+                                                    </div>
+
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@suit.GetID()">
+                                                        <button asp-page-handler="IncreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(suit.Quantity == Model.productManager.GetSuitsStock().Count ? "disabled" : null)">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <!-- Quantity -->
+                                                <!-- Price -->
+                                                <p class="text-start text-md-center">
+                                                    <strong>€@suit.GetPrice() per piece.</strong>
+                                                </p>
+                                                <!-- Price -->
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (p is Bracelet)
+                                    {
+                                        Bracelet bracelet = (Bracelet)p;
+                                        <div class="row mb-4">
+                                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                                <!-- Image -->
+                                                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                                    @if (bracelet.GetMaterial() == Material.GOLD)
+                                                    {
+                                                        <img src="~/Pictures/gold bracelet.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Gold Bracelet">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Pictures/silver bracelet.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Silver Bracelet">
+                                                    }
+                                                </div>
+                                                <!-- Image -->
+                                            </div>
+
+                                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Data -->
+                                                <p><strong>@bracelet.GetName()</strong></p>
+                                                <p>Color: @bracelet.GetMaterial().ToString()</p>
+                                                <form method="post">
+                                                    <input asp-for="ProductID" type="hidden" value="@bracelet.GetID()">
+                                                    <button asp-page-handler="RemoveFromCart" asp-route-productID="@bracelet.GetID()" type="submit" class="btn-danger px-3 me-2 mx-lg-1 btn" style="height:38px;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <!-- Data -->
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Quantity -->
+                                                <div class="d-flex mb-4" style="max-width: 300px">
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@bracelet.GetID()">
+                                                        <button asp-page-handler="DecreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(bracelet.Quantity <= 1 ? "disabled" : null)">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+                                                    </form>
+
+                                                    <div class="form-outline">
+                                                        <input id="form1" min="1" name="quantity" value="@bracelet.Quantity" type="number" readonly class="form-control"
+                                                               oninput="if (this.value < 1) this.value = 1;" />
+                                                        <label class="form-label" for="form1">Quantity</label>
+                                                    </div>
+
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@bracelet.GetID()">
+                                                        <button asp-page-handler="IncreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(bracelet.Quantity == Model.productManager.GetBraceletsStock().Count ? "disabled" : null)">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <!-- Quantity -->
+                                                <!-- Price -->
+                                                <p class="text-start text-md-center">
+                                                    <strong>€@bracelet.GetPrice() per piece.</strong>
+                                                </p>
+                                                <!-- Price -->
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (p is Necklace)
+                                    {
+                                        Necklace necklace = (Necklace)p;
+                                        <div class="row mb-4">
+                                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                                <!-- Image -->
+                                                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                                    @if (necklace.GetMaterial() == Material.GOLD)
+                                                    {
+                                                        <img src="~/Pictures/gold necklace.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Gold necklace">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Pictures/silver necklace.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Silver necklace">
+                                                    }
+                                                </div>
+                                                <!-- Image -->
+                                            </div>
+
+                                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Data -->
+                                                <p><strong>@necklace.GetName()</strong></p>
+                                                <p>Color: @necklace.GetMaterial().ToString()</p>
+                                                <form method="post">
+                                                    <input asp-for="ProductID" type="hidden" value="@necklace.GetID()">
+                                                    <button asp-page-handler="RemoveFromCart" asp-route-productID="@necklace.GetID()" type="submit" class="btn-danger px-3 me-2 mx-lg-1 btn" style="height:38px;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <!-- Data -->
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Quantity -->
+                                                <div class="d-flex mb-4" style="max-width: 300px">
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@necklace.GetID()">
+                                                        <button asp-page-handler="DecreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(necklace.Quantity <= 1 ? "disabled" : null)">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+                                                    </form>
+
+                                                    <div class="form-outline">
+                                                        <input id="form1" min="1" name="quantity" value="@necklace.Quantity" type="number" readonly class="form-control"
+                                                               oninput="if (this.value < 1) this.value = 1;" />
+                                                        <label class="form-label" for="form1">Quantity</label>
+                                                    </div>
+
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@necklace.GetID()">
+                                                        <button asp-page-handler="IncreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(necklace.Quantity == Model.productManager.GetNecklacesStock().Count ? "disabled" : null)">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <!-- Quantity -->
+                                                <!-- Price -->
+                                                <p class="text-start text-md-center">
+                                                    <strong>€@necklace.GetPrice() per piece.</strong>
+                                                </p>
+                                                <!-- Price -->
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (p is Earring)
+                                    {
+                                        Earring earring = (Earring)p;
+                                        <div class="row mb-4">
+                                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                                <!-- Image -->
+                                                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                                    @if (earring.GetMaterial() == Material.GOLD)
+                                                    {
+                                                        <img src="~/Pictures/gold earrings.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Gold earrings">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Pictures/silver earrings.jpg" class="card-img w-100 cart-pictures" style="height: 300px !important;" alt="Silver earrings">
+                                                    }
+                                                </div>
+                                                <!-- Image -->
+                                            </div>
+
+                                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Data -->
+                                                <p><strong>@earring.GetName()</strong></p>
+                                                <p>Color: @earring.GetMaterial().ToString()</p>
+                                                <form method="post">
+                                                    <input asp-for="ProductID" type="hidden" value="@earring.GetID()">
+                                                    <button asp-page-handler="RemoveFromCart" asp-route-productID="@earring.GetID()" type="submit" class="btn-danger px-3 me-2 mx-lg-1 btn" style="height:38px;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <!-- Data -->
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Quantity -->
+                                                <div class="d-flex mb-4" style="max-width: 300px">
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@earring.GetID()">
+                                                        <button asp-page-handler="DecreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(earring.Quantity <= 1 ? "disabled" : null)">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+                                                    </form>
+
+                                                    <div class="form-outline">
+                                                        <input id="form1" min="1" name="quantity" value="@earring.Quantity" type="number" readonly class="form-control"
+                                                               oninput="if (this.value < 1) this.value = 1;" />
+                                                        <label class="form-label" for="form1">Quantity</label>
+                                                    </div>
+
+                                                    <form method="post">
+                                                        <input asp-for="ProductID" type="hidden" value="@earring.GetID()">
+                                                        <button asp-page-handler="IncreaseQuantity" class="btn-primary px-3 me-2 mx-lg-1 btn" style="height:38px;"
+                                                                disabled="@(earring.Quantity == Model.productManager.GetEarringsStock().Count ? "disabled" : null)">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <!-- Quantity -->
+                                                <!-- Price -->
+                                                <p class="text-start text-md-center">
+                                                    <strong>€@earring.GetPrice() per piece.</strong>
+                                                </p>
+                                                <!-- Price -->
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                <!-- Single item -->
+
+                                <hr class="my-4" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-5">
+                            <div class="card mb-4">
+                                <div class="card-header py-3">
+                                    <h5 class="mb-0">Shipping Address</h5>
+                                </div>
+                                @if (HttpContext.Session.GetString("Name") != null)
+                                {
+                                    <div class="card-body">
+                                        <p>@Model.AccountManager.GetCustomerByID(HttpContext.Session.GetInt32("id")).Address</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="card-body">
+                                        <p>Authenticate before placing an order.</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mt-5">
+                            <div class="card mb-4">
+                                <div class="card-header py-3">
+                                    <h5 class="mb-0">Expected delivery time</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Maximum of 5 working days.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mt-5">
+                            <div class="card mb-4">
+                                <div class="card-header py-3">
+                                    <h5 class="mb-0">Recommended products</h5>
+                                </div>
+
+                                @{
+                                    List<Product> recommendedProducts = Model.orderManager.GetRecommendedProductsForUser(HttpContext.Session.GetInt32("id"), Model.AccountManager, Model.productManager);
+                                }
+                                <div class="row-scrollable">
+                                    <div class="row">
+                                        @if (recommendedProducts.Count >= 1)
+                                        {
+                                            int count = 0;
+                                            @foreach (Product p in recommendedProducts)
+                                            {
+                                                count++;
+                                                if (count<=4)
+                                                {
+                                                    if (p is Dress)
+                                                    {
+                                                        Dress product = (Dress)p;
+
+                                                        <div class="col-lg-3 col-md-3">
+                                                            <a class="text-decoration-none text-dark recommended-product-box-size" asp-page="Details" asp-route-id="@product.GetID()">
+                                                                <div class=" container-fluid border border-secondary rounded">
+                                                                    <div class="card-body">
+                                                                        @if (product.GetColor() == DressColors.RED)
+                                                                        {
+                                                                            <img src="~/Pictures/red dress.jpg" class="card-img" alt="Red Dress">
+                                                                        }
+                                                                        else if (product.GetColor() == DressColors.BLUE)
+                                                                        {
+                                                                            <img src="~/Pictures/blue dress.jpg" class="card-img" alt="Blue Dress">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img src="~/Pictures/black dress.jpg" class="card-img" alt="Black Dress">
+                                                                        }
+                                                                    </div>
+                                                                    <div class="card-body text-center">
+                                                                        <p>@product</p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                    else if (p is Suit)
+                                                    {
+                                                        Suit product = (Suit)p;
+
+                                                        <div class="col-lg-3 col-md-3">
+                                                            <a class="text-decoration-none text-dark recommended-product-box-size" asp-page="Details" asp-route-id="@product.GetID()">
+                                                                <div class="container-fluid border border-secondary rounded">
+                                                                    <div class="card-body">
+                                                                        @if (product.GetColor() == SuitColors.BLACK)
+                                                                        {
+                                                                            <img src="~/Pictures/black suit.jpg" class="card-img" alt="Black Suit">
+                                                                        }
+                                                                        else if (product.GetColor() == SuitColors.NAVY)
+                                                                        {
+                                                                            <img src="~/Pictures/navy suit.jpeg class="card-img" alt="Navy Suit">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img src="~/Pictures/brown suit.jpg" class="card-img" alt="Brown Suit">
+                                                                        }
+                                                                    </div>
+                                                                    <div class="card-body text-center">
+                                                                        <p>@product</p>
+                                                                    </div>
+                                                                </div>
+
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                    else if (p is Bracelet)
+                                                    {
+                                                        Bracelet product = (Bracelet)p;
+
+                                                        <div class="col-lg-3 col-md-3">
+                                                            <a class="text-decoration-none text-dark recommended-product-box-size" asp-page="Details" asp-route-id="@product.GetID()">
+                                                                <div class="container-fluid border border-secondary rounded">
+                                                                    <div class="card-body">
+                                                                        @if (product.GetMaterial() == Material.GOLD)
+                                                                        {
+                                                                            <img src="~/Pictures/gold bracelet.jpg" class="card-img" alt="Gold Bracelet">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img src="~/Pictures/silver bracelet.jpg" class="card-img" alt="Silver Bracelet">
+                                                                        }
+                                                                    </div>
+                                                                    <div class="card-body text-center">
+                                                                        <p>@product</p>
+                                                                    </div>
+                                                                </div>
+
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                    else if (p is Necklace)
+                                                    {
+                                                        Necklace product = (Necklace)p;
+
+                                                        <div class="col-lg-3 col-md-3">
+                                                            <a class="text-decoration-none text-dark recommended-product-box-size" asp-page="Details" asp-route-id="@product.GetID()">
+                                                                <div class="container-fluid border border-secondary rounded">
+                                                                    <div class="card-body">
+                                                                        @if (product.GetMaterial() == Material.GOLD)
+                                                                        {
+                                                                            <img src="~/Pictures/gold necklace.jpg class="card-img" alt="Gold Necklace">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img src="~/Pictures/silver necklace.jpg" class="card-img" alt="Silver Necklace">
+                                                                        }
+                                                                    </div>
+                                                                    <div class="card-body text-center">
+                                                                        <p>@product</p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                    else if (p is Earring)
+                                                    {
+                                                        Earring product = (Earring)p;
+
+                                                        <div class="col-lg-3 col-md-3">
+                                                            <a class="text-decoration-none text-dark recommended-product-box-size" asp-page="Details" asp-route-id="@product.GetID()">
+                                                                <div class="container-fluid border border-secondary rounded">
+                                                                    <div class="card-body">
+                                                                        @if (product.GetMaterial() == Material.GOLD)
+                                                                        {
+                                                                            <img src="~/Pictures/gold earrings.jpg" class="card-img" alt="Gold Earrings">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img src="~/Pictures/silver earrings.jpg" class="card-img" alt="Silver Earrings">
+                                                                        }
+                                                                    </div>
+                                                                    <div class="card-body text-center">
+                                                                        <p>@product</p>
+                                                                    </div>
+                                                                </div>
+
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                
+                                
+                                @if (recommendedProducts.Count < 1)
+                                {
+                                    <div class="card-body">
+                                        <p>No recommended products available.</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-5">
+                            <div class="card mb-4">
+                                <div class="card-header py-3">
+                                    <h5 class="mb-0">Summary</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                            Products
+                                            <span>€@Model.ShoppingCartManager.GetTotal(HttpContext.Session.GetInt32("id"))</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                            Shipping
+                                            <span>Free</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                            <div>
+                                                <strong>Total amount</strong>
+                                                <strong>
+                                                    <p class="mb-0">(including VAT)</p>
+                                                </strong>
+                                            </div>
+                                            <span><strong>€@Model.ShoppingCartManager.GetTotal(HttpContext.Session.GetInt32("id"))</strong></span>
+                                        </li>
+                                    </ul>
+                                    @if ((HttpContext.Session.GetString("Name") != null) && Model.ShoppingCartManager.GetAllShoppingCartProducts(HttpContext.Session.GetInt32("id")).Count >= 1)
+                                    {
+                                        <form method="post">
+                                            <button asp-page-handler="PlaceOrder" type="submit" class="btn btn-primary btn-lg btn-block">
+                                                Place order
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <p><strong>Your shopping cart is empty!</strong></p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <div class="text-center">
+            <form method="post">
+                <h1>Authenticate first before using the shopping cart!</h1>
+                
+                <button asp-page-handler="GoToLogin" class="btn-primary" type="submit">Login</button>
+            </form>
+        </div>
+        
+    }
+</div>

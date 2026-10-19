@@ -1,0 +1,121 @@
+﻿@page
+@model Website.Pages.ContactModel
+@{
+	ViewData["Title"] = "Contact page";
+}
+
+ <div class="container-fluid px-4 p-3">
+
+     <!-- Page title -->
+    <div class="page-title-container">
+        <h1 class="display-4">Contact</h1>
+        <p class="lead">Contact us for any inquire you might have.</p>
+    </div>
+
+	<!-- Contact form -->
+	<div class="d-flex justify-content-center mt-5">
+		<img src="~/Pictures/Logo.png" class="logopic text-center" alt="Logo image." />
+	</div>
+	
+	<form method="post">
+				<div class="col text-center my-auto">
+						<div class="mt-5 contact-info">
+							<p class="mb-3">Name: mateo.</p>
+							<p class="mb-1 text-muted">Email: user4@example.com</p>
+							<p class="mb-0 text-muted">Phone number: 0000000000</p>
+						</div>
+					
+					@if(HttpContext.Session.GetString("Name") != null)
+					{
+							<p class="text-black mt-5 h3 text-decoration-underline text-center">Submit a review here:</p>
+							<div class="container-fluid mt-3">
+								<div class="col">
+									<textarea class="reviewtext" rows="4" asp-for="Review" placeholder="Write something.." oninput="validateInput(this)"></textarea>
+								</div>
+
+								<div class="col">
+									<input type="submit" value="Submit">
+								</div>
+
+								<div class="col">
+									<span class="text-danger" asp-validation-for="Review"></span>
+								</div>
+
+								<br />
+								<p class="text-danger"> @Model.Message </p>
+							</div>
+					}
+					else
+					{
+						<form method="post">
+							<div class="text-center mt-5">
+								<h3>Log in to submit a review!</h3>
+								<button type="submit" class="btn-primary" asp-page-handler="GoToLogin">Login</button>
+							</div>
+						</form>
+					}
+				</div>
+	</form>
+</div>
+
+<script>
+	// Function to validate the input and remove emojis
+	function validateInput(inputElement) {
+		var regex = /[\u2600-\u27FF]|[\uD800-\uDFFF]|[\uD83C-\uD83E]|[\u0023-\u0029]/g; // Regex to match emojis
+		var cleanedText = inputElement.value.replace(regex, '');
+		inputElement.value = cleanedText;
+	}
+</script>
+
+@*<div class="container-fluid w-100 h-100">
+	<form method="post">
+	<div class="container w-100 h-100">
+		<div class="container-fluid align-content-center text-center w-100 h-100">
+			<h1>Contact.</h1>
+			<div class="container-fluid h-auto row contactDiv">
+				<div class="col">
+					<img src="~/Pictures/Logo.png" class="logopic" alt="Logo image." />
+				</div>
+				<div class="col text-center my-auto">
+						<div class=" text-decoration-underline">
+					<p>Name: mateo.</p>
+					<p>Email: user4@example.com</p>
+					<p>Phone number: 0000000000</p>
+						</div>
+					
+
+					@if(HttpContext.Session.GetString("Name") != null)
+					{
+							<p class="text-black align-self-lg-start d-flex h3 text-decoration-underline">Submit a review here:</p>
+							<div class="container-fluid">
+								<div class="col">
+									<textarea class="reviewtext" rows="4" asp-for="Review" placeholder="Write something.."></textarea>
+								</div>
+
+								<div class="col">
+									<input type="submit" value="Submit">
+								</div>
+
+								<div class="col">
+									<span class="text-danger" asp-validation-for="Review"></span>
+								</div>
+
+								<br />
+								<p class="text-danger"> @Model.Message </p>
+							</div>
+					}
+					else
+					{
+						<div class="text-center">
+							<h3>Log in to submit a review!</h3>	
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+*@
+
+<partial name="_ValidationScriptsPartial" />

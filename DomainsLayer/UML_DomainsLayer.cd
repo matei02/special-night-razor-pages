@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DomainsLayer.Admin">
+    <Position X="3.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAkAAAAQAQAAEIEAEACAAAAAgAAAgA=</HashCode>
+      <FileName>Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainsLayer.Bracelet">
+    <Position X="8.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bracelet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainsLayer.Customer">
+    <Position X="8.25" Y="12.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAECAQABAiAAAAAkAAAAQAQAAEIEAEACAACAAgAAAgA=</HashCode>
+      <FileName>Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainsLayer.Dress">
+    <Position X="2" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAABAAEQAAAAIAAAAAAAACAAAgAAAAAQAA=</HashCode>
+      <FileName>Dress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainsLayer.Earring">
+    <Position X="12" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Earring.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainsLayer.Jewelry">
+    <Position X="10.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAEAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Jewelry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainsLayer.Necklace">
+    <Position X="13.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Necklace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainsLayer.Order">
+    <Position X="1.25" Y="14" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACJAAAAAAACAAEAAAAgAQAAAAAAAAAQEAAAAAAAgA=</HashCode>
+      <FileName>Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainsLayer.Suit">
+    <Position X="5.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAIAAAAAABAAEQAAAAIAAAAAAAACAAAgAAAAAAAA=</HashCode>
+      <FileName>Suit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainsLayer.Product">
+    <Position X="5.5" Y="2.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAEEAAAAAAAAAAEAECAAAAAgAAABAA=</HashCode>
+      <FileName>Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DomainsLayer.DressColors">
+    <Position X="1.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAABAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dress.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DomainsLayer.Material" Collapsed="true">
+    <Position X="10.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Jewelry.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DomainsLayer.SuitColors">
+    <Position X="5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAgAAQ=</HashCode>
+      <FileName>Suit.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,58 @@
+﻿@page
+@using DataAccessLayer
+@using DomainsLayer
+@using LogicLayer
+@model Website.Pages.DressesModel
+@{
+	ViewData["Title"] = "Dresses";
+}
+
+<div class="container-fluid px-4 p-3">
+
+    <!-- Page title -->
+    <div class="page-title-container">
+        <h1 class="display-4">Dresses</h1>
+        <p class="lead">Browse through our wonderful collection of dresses.</p>
+    </div>
+    <div class="row">
+        @foreach (Product product in Model.GetAllDresses)
+        {
+            <div class="col-12 col-md-6">
+                <a class="text-decoration-none text-dark" asp-page="Details" asp-route-id="@product.GetID()">
+                    @if (product is Dress)
+                    {
+                        Dress dress = (Dress)product;
+                        <div class="card mb-3 p-4 card-custom">
+                            <div class="row g-0 d-flex justify-content-center align-items-center">
+                                <div class="col-md-4">
+                                    @if (dress.GetColor() == DressColors.RED)
+                                    {
+                                        <img src="~/Pictures/red dress.jpg" class="card-img" alt="Red Dress">
+                                    }
+                                    else if (dress.GetColor() == DressColors.BLUE)
+                                    {
+                                        <img src="~/Pictures/blue dress.jpg" class="card-img" alt="Blue Dress">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Pictures/black dress.jpg" class="card-img" alt="Black Dress">
+                                    }
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body card-body-custom">
+                                        <h2 class="text-capitalize">@dress.GetName()</h2>
+                                        <div claclass="card-info">
+                                            <p class="card-text">Description: @dress</p>
+                                            <p class="card-text">Available quantity: @dress.Quantity</p>
+                                            <p class="card-text"><small class="text-muted">Lorem ipsum sin dolor</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </a>
+            </div>
+        }
+    </div>
+</div>

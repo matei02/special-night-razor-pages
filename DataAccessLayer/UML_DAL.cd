@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="DataAccessLayer.ReviewDAL">
+    <Position X="4.25" Y="14.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAIAEAQAAAAAAAAAAAQAAAAgAIAAAAAAAAA=</HashCode>
+      <FileName>ReviewDAL.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DataAccessLayer.ProductDAL">
+    <Position X="17.5" Y="13.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AICgwAAABAAAIAQIJAAIAIAgQCQAgAIAgAAICJwAQAA=</HashCode>
+      <FileName>ProductDAL.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DataAccessLayer.DataAccessLayer">
+    <Position X="11" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>DataAccessLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccessLayer.AccountDAL">
+    <Position X="9" Y="13.75" Width="7" />
+    <TypeIdentifier>
+      <HashCode>AAAgABARAQAAAIUEBAABQAAAAAQEAAAAIAAMQAABAAA=</HashCode>
+      <FileName>AccountDAL.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Interface Name="DataAccessLayer.IAccountDAL">
+    <Position X="8" Y="8.75" Width="7" />
+    <TypeIdentifier>
+      <HashCode>AAAAABARAQAAAIEEBAABQAAAAAAEAAAAIAAEQAABAAA=</HashCode>
+      <FileName>IAccountDAL.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DataAccessLayer.IProductDAL">
+    <Position X="19" Y="6.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AICgwAAABAAAIAAIJAAIAIAgQCQAgAIAgAAACJwAQAA=</HashCode>
+      <FileName>IProductDAL.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DataAccessLayer.IReviewDAL">
+    <Position X="14.25" Y="6.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAEAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>IReviewDAL.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

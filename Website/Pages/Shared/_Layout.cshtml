@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Website</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Website.styles.css" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 navbar-custom p-2 py-3">
+            <div class="container-fluid">
+                <label class="navbar_account">
+                <a class="navbar-brand navbar-textcolor" asp-area="" asp-page="/Index">Special Night</a>
+                </label>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <label class="navbar_account">
+                            <a class="nav-link text-dark navbar-textcolor" asp-area="" asp-page="/Home">Catalogue</a>
+                            </label>
+                        </li>
+                        <li class="nav-item">
+                            <label class="navbar_account">
+                            <a class="nav-link text-dark navbar-textcolor" asp-area="" asp-page="/Contact">Contact</a>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="search-container px-4 searchbar">
+                    <form action="SearchPage" method="get">
+                        <div class="search">
+                            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Search..." name="query" autocomplete="on">
+                            <datalist id="datalistOptions">
+                                <option value="Dresses"></option>
+                                <option value="Suits"></option>
+                                <option value="Jewelry"></option>
+                                <option value="Contact"></option>
+                                <option value="Catalogue"></option>
+                                <option value="Shopping Cart"></option>
+                            </datalist>
+                        </div>
+                        @*<input type="text" placeholder="Search.." name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>*@
+                    </form>
+                </div>
+                
+                @if (Context.Session.GetString("Name") != null)
+                {
+                    //string user_name = "";
+                    //user_name = User.FindFirst("Name").Value;
+
+                    <div>
+                        <div class="row">
+                            <div class="col-auto">
+                                <label class="navbar_account">
+                                    <a href="/Profile">@Context.Session.GetString("Name")</a>
+                                </label>
+                            </div>
+                            <div class="col-auto">
+                                <label class="navbar_account">
+                                    <a href="/Logout">Log out</a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else 
+                {
+                    <div class="user_icon">
+                        <a href="/Login"><i class="fas fa-user"></i></a>
+                    </div>
+                }
+                
+            </div>
+        </nav>
+    </header>
+
+    @*<div class="container-fluid middle-screen">*@
+    <div class="container-fluid middle-screen">
+        <div class="row d-flex">
+            <div class="col-12 col-sm-4 col-md-2 col-lg-2 bgcolor bg-gradient bg-opacity-100 py-4 mb-3 mb-sm-0 sidebar_color sidebar-height">
+                <div class="p-2 text-center"> 
+                   <h3 class="pb-0 mb-0">Special Night</h3>
+                   <p class="text-muted">Luxury & Quality comes first.</p>  
+                   <img src="~/Pictures/Logo.png" alt="Logo Picture"/>
+                   <span style="height:500px;"></span>
+               </div>
+                <ul class="sidebar_list">
+                    <li><a href="/Home" class="link">Catalogue</a></li>
+                    <li><a href="/Dresses" class="link">Dresses</a></li>
+                    <li><a href="/Jewelry" class="link">Jewelry</a></li>
+                    <li><a href="/Suits" class="link">Suits</a></li>
+					<li><a href="/Contact" class="link">Contact</a></li>
+                    <li><a href="/Shopping_Cart" class="link">Shopping cart</a></li>
+                    @if (Context.Session.GetString("Name") == null)
+                    {
+                        <li><a href="/Login" class="link">Authentication</a></li>                    
+                    }
+                </ul>
+            </div>
+            <div class="col-12 col-sm-8 col-md-10 col-lg-10 flex-grow-1">
+                <main role="main" class="pb-3 align-content-center align-items-center main-content">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div> 
+
+        
+    <footer class="border-top footer text-muted footer-color">
+        <div class="container footer-text ">
+            &copy; 2023 - Special Night.
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+   
+</body>
+</html>

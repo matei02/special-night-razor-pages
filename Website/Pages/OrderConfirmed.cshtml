@@ -1,0 +1,9 @@
+﻿@page
+@model Website.Pages.OrderConfirmedModel
+@{
+}
+
+<div class="text-center p-3 m-4">
+    <h1> Order #@HttpContext.Session.GetInt32("orderID") has been confirmed!</h1>
+    <h2>An email has been sent to you with the order's details.</h2>
+</div>

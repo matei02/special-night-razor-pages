@@ -1,0 +1,111 @@
+﻿@page
+@using DataAccessLayer
+@using DomainsLayer
+@using DomainsLayer.Classes;
+@using LogicLayer
+@model Website.Pages.JewelryModel
+@{
+		ViewData["Title"] = "Jewelry";
+}
+
+<div class="container-fluid px-4 p-3">
+
+    <!-- Page title -->
+    <div class="page-title-container">
+        <h1 class="display-4">Jewelry</h1>
+        <p class="lead">Browse through our wonderful collection of jewelries.</p>
+    </div>
+    <div class="row">
+        @foreach (Product product in Model.GetAllJewelry)
+        {
+            <div class="col-12 col-md-6">
+                <a class="text-decoration-none text-dark" asp-page="Details" asp-route-id="@product.GetID()">
+                    @if (product is Bracelet)
+                    {
+                        Bracelet bracelet = (Bracelet)product;
+                        <div class="card mb-3 p-4 card-custom">
+                            <div class="row g-0 d-flex justify-content-center align-items-center">
+                                <div class="col-md-4">
+                                    @if (bracelet.GetMaterial() == Material.GOLD)
+                                    {
+                                        <img src="~/Pictures/gold bracelet.jpg" class="card-img" alt="Gold Bracelet">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Pictures/silver bracelet.jpg" class="card-img" alt="Silver Bracelet">
+                                    }
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body card-body-custom">
+                                        <h2 class="text-capitalize">@bracelet.GetName()</h2>
+                                        <div claclass="card-info">
+                                            <p class="card-text">Description: @bracelet</p>
+                                            <p class="card-text">Available quantity: @bracelet.Quantity</p>
+                                            <p class="card-text"><small class="text-muted">Lorem ipsum sin dolor</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (product is Necklace)
+                    {
+                        Necklace necklace = (Necklace)product;
+                        <div class="card mb-3 p-4 card-custom">
+                            <div class="row g-0 d-flex justify-content-center align-items-center">
+                                <div class="col-md-4">
+                                    @if (necklace.GetMaterial() == Material.GOLD)
+                                    {
+                                        <img src="~/Pictures/gold necklace.jpg" class="card-img" alt="Gold Necklace">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Pictures/silver necklace.jpg" class="card-img" alt="Silver Necklace">
+                                    }
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body card-body-custom">
+                                        <h2 class="text-capitalize">@necklace.GetName()</h2>
+                                        <div claclass="card-info">
+                                            <p class="card-text">Description: @necklace</p>
+                                            <p class="card-text">Available quantity: @necklace.Quantity</p>
+                                            <p class="card-text"><small class="text-muted">Lorem ipsum sin dolor</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (product is Earring)
+                    {
+                        Earring earring = (Earring)product;
+                        <div class="card mb-3 p-4 card-custom">
+                            <div class="row g-0 d-flex justify-content-center align-items-center">
+                                <div class="col-md-4">
+                                    @if (earring.GetMaterial() == Material.GOLD)
+                                    {
+                                        <img src="~/Pictures/gold earrings.jpg" class="card-img" alt="Gold Earrings">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Pictures/silver earrings.jpg" class="card-img" alt="Silver Earrings">
+                                    }
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body card-body-custom">
+                                        <h2 class="text-capitalize">@earring.GetName()</h2>
+                                        <div claclass="card-info">
+                                            <p class="card-text">Description: @earring</p>
+                                            <p class="card-text">Available quantity: @earring.Quantity</p>
+                                            <p class="card-text"><small class="text-muted">Lorem ipsum sin dolor</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </a>
+            </div>
+        }
+    </div>
+</div>
