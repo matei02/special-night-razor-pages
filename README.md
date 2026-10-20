@@ -85,7 +85,7 @@ Register a customer on the website. There is no sign-up for staff: copy a regist
 
 Individual project: I wrote all of it. The original repository has 97 commits, all mine (Feb to Nov 2023). This repository starts with a fresh history.
 
-**About this repository:** the code is mine and is shown as it was in 2023. I packaged it for GitHub (this README, the recreated demo database script, screenshots, GIFs, removing secrets) with help from an AI assistant, which is why the commits list Claude as co-author.
+**About this repository:** the code is mine and has not been changed since 2023. I packaged it for GitHub (this README, the recreated demo database script, screenshots, GIFs, removing secrets) with help from an AI assistant, which is why the commits list Claude as co-author.
 
 ## Status and limitations
 
