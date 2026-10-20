@@ -4,7 +4,7 @@ A C# / .NET 6 project for a fictional rental shop for evening wear (dresses, sui
 
 ![Demo: a customer logs in, browses the dresses, opens a product, adds it to the cart, looks at the jewelry and opens the cart](docs/demo.gif)
 
-> Recorded on my machine with the unchanged code running against a local demo database (see "How to run it" for why it had to be recreated).
+> Recorded with the original code against a demo database (see "How to run it").
 
 Individual project from my second semester of software engineering (2023).
 
@@ -53,7 +53,7 @@ flowchart TB
 ```
 
 - **Layers in separate projects:** `DomainsLayer` (entities), `Libraries`/LogicLayer (managers such as `AccountManager`, `ProductManager`, `OrderManager`, `ShoppingCartManager`, `ReviewManager`, plus the DAL interfaces), `DataAccessLayer` (SQL queries), and two front ends. The logic layer depends on interfaces, not on the database code.
-- **Testable without a database:** the test project swaps the real DAL for fake in-memory DALs. **44 unit tests (MSTest), all passing** when I ran them in a .NET 6 SDK container.
+- **Testable without a database:** the test project swaps the real DAL for fake in-memory DALs. **44 unit tests (MSTest), all passing.**
 - UML class diagrams for each layer are included (`*.cd` files, Visual Studio class designer).
 
 ## Tech stack
@@ -62,7 +62,7 @@ C# / .NET 6, ASP.NET Core Razor Pages, Windows Forms, ADO.NET (`System.Data.SqlC
 
 ## How to run it
 
-During the semester the project used a SQL Server database on the university's server, which I no longer have. The schema was never part of the code, so for this repository I recreated it from the queries in `DataAccessLayer/DALs/`: [`demo-database/schema-and-demo-data.sql`](demo-database/schema-and-demo-data.sql) (tables plus a few demo products; added for this repo, not part of the original project). The screenshots and GIFs above were made with it.
+During the semester the project used a SQL Server database on the university's server, which I no longer have. The schema was never part of the code, so for this repository it was recreated from the queries in `DataAccessLayer/DALs/`: [`demo-database/schema-and-demo-data.sql`](demo-database/schema-and-demo-data.sql) (tables plus a few demo products; added for this repo, not part of the original project). The screenshots and GIFs above were made with it.
 
 Requirements: .NET 6 runtime or newer SDK, SQL Server (for example the official Docker image), Windows for the desktop app.
 
