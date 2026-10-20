@@ -71,6 +71,8 @@ So I could not record the catalogue, cart or desktop app without changing code o
 
 Individual project: I wrote all of it. The original repository has 97 commits, all mine (Feb to Nov 2023). This repository starts with a fresh history.
 
+**About this repository:** the code is mine and is shown as it was in 2023. I packaged it for GitHub (this README, screenshots, demo GIF, removing secrets) with help from an AI assistant, which is why the single commit lists Claude as co-author.
+
 ## Status and limitations
 
 - Semester project, not a product; the shop and its texts are fictional.
